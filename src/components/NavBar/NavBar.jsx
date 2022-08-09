@@ -3,7 +3,7 @@ import {
   AppBar,
   IconButton,
   Toolbar,
-  Drawer,
+  // Drawer,
   Button,
   Avatar,
   useMediaQuery,
@@ -17,12 +17,14 @@ import {
 } from '@mui/icons-material'
 
 import { Link } from 'react-router-dom'
-
+import { useTheme } from '@mui/material/styles'
 import useStyles from './styles.js'
 
 const NavBar = () => {
   const classes = useStyles()
   const isMobile = useMediaQuery('(max-width:600px)')
+  const theme = useTheme()
+  const isAuthenticated = true
 
   return (
     <>
@@ -39,6 +41,33 @@ const NavBar = () => {
               <Menu />
             </IconButton>
           )}
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+            {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+            {!isMobile && 'Search...'}
+            <div>
+              {!isAuthenticated ? (
+                <Button color="inherit" onClick={() => {}}>
+                  Login &nbsp; <AccountCircle />
+                </Button>
+              ) : (
+                <Button
+                  color="inherit"
+                  component={Link}
+                  to={`/profile/:id`}
+                  className={classes.linkButton}
+                  onClick={() => {}}
+                >
+                  {!isMobile && <>My Movies &nbsp;</>}
+                  <Avatar
+                    style={{ width: 30, height: 30 }}
+                    alt="Profile"
+                    src="https://changingourworld.com/wp-content/uploads/2018/01/avatar-placeholder.png"
+                  />
+                </Button>
+              )}
+            </div>
+            {isMobile && 'Search...'}
+          </IconButton>
         </Toolbar>
       </AppBar>
     </>
