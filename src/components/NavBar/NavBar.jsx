@@ -34,7 +34,9 @@ const NavBar = () => {
             <IconButton
               color="inherit"
               edge="start"
-              style={{ outline: 'none' }}
+              style={{
+                outline: 'none',
+              }}
               onClick={() => {}}
               className={classes.menuButton}
             >
